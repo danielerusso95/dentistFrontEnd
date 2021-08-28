@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Hour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let el of appointments">
+        <td scope="row">{{el.customer.name}}</td>
+        <td>{{el.customer.surname}}</td>
+        <td>{{el.customer.phoneNumber}}</td>
+        <td>{{el.date|slice:11:16}}</td>
+      </tr>
+    </tbody>
+  </table>
