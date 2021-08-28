@@ -1,4 +1,7 @@
-<table class="table">
+<h3>Customers</h3>
+<button class="btn btn-success" routerLink="/formCustomer">Add New Customer</button>
+<div class="container">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Name</th>
@@ -6,6 +9,7 @@
         <th scope="col">Phone Number</th>
         <th scope="col">Email</th>
         <th scope="col">Date Of Birthday</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +19,9 @@
         <td>{{el.phoneNumber}}</td>
         <td>{{el.email}}</td>
         <td>{{el.dob|slice:0:10}}</td>
+        <td><button class="btn btn-info" (click)="viewCustomer(el)"><i class="far fa-eye"></i></button></td>
       </tr>
     </tbody>
   </table>
+
+</div>

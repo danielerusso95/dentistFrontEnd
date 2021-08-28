@@ -17,4 +17,5 @@ export class CustomerService {
       return this.http.get<any>("http://localhost:8080//api/customer/getAll");
      }
 
+
 }

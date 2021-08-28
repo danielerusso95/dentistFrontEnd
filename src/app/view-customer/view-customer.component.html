@@ -1,0 +1,36 @@
+
+<div class="container rounded bg-white mt-5 mb-5 w-75">
+    <div class="row">
+        <div class="col-md-3 border-right">
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"[value]="user.name" (input)="setName($event)"></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" [value]="user.surname"(input)="setSurname($event)"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control"[value]="user.phoneNumber"(input)="setPhoneNumber($event)"></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" [value]="user.email"(input)="setEmail($event)"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Date Of Birthday</label><input type="text" class="form-control"[value]="user.dob|slice:0:10" (input)="setDob($event)"></div>
+                    <div class="col-md-6"><label class="labels">Fiscal Code</label><input type="text" class="form-control" [value]="user.cf" (input)="setCf($event)"></div>
+                </div>
+            </div>
+                <div class="row mb-3 ms-2">
+                 <div class="col-6">
+                    <button class="btn btn-primary" (click)="updateCustomer()">Update</button>
+                 </div>
+                 <div class="col-6">
+                    <button class="btn btn-danger" (click)="deleteCustomer()">Delete</button>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -26,5 +26,8 @@ export class AppointmentService {
     let today:number[]=[date.getDate(),date.getMonth()+1,date.getFullYear()] 
     return this.http.get<any>("http://localhost:8080/api/appointment/getAllByDate/"+today[0]+"/"+today[1]+"/"+today[2]);
   }
+  /**
+   * update 
+   */
 
 }
