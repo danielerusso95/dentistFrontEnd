@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppointmentService } from '../service/appointmentService/appointment.service';
 import { CustomerService } from '../service/customerService/customer.service';
 
@@ -12,7 +13,8 @@ export class FormAppointmentComponent implements OnInit {
   public today: string = '';
   constructor(
     private customerService: CustomerService,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private router: Router
   ) {}
   public customers: any;
 
@@ -33,9 +35,11 @@ export class FormAppointmentComponent implements OnInit {
    * @param body
    */
   insertAppointment(body: any) {
-    this.appointmentService
-      .insertAppointment(body)
-      .subscribe((data) => console.log(data));
+    this.appointmentService.insertAppointment(body).subscribe((data) => {
+      this.router.navigate(['/appointment']).then(() => {
+        window.location.reload();
+      });
+    });
   }
 
   /**
