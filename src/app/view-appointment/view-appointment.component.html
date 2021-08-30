@@ -16,8 +16,8 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.name"
-              (input)="setName($event)"
+              [value]="appointment.customer.name"
+              disabled
             />
           </div>
           <div class="col-md-6">
@@ -25,8 +25,8 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.surname"
-              (input)="setSurname($event)"
+              [value]="appointment.customer.surname"
+              disabled
             />
           </div>
         </div>
@@ -36,8 +36,8 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.phoneNumber"
-              (input)="setPhoneNumber($event)"
+              [value]="appointment.customer.phoneNumber"
+              disabled
             />
           </div>
           <div class="col-md-12">
@@ -45,39 +45,40 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.email"
-              (input)="setEmail($event)"
+              [value]="appointment.customer.email"
+              disabled
             />
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-md-12">
-            <label class="labels">Date Of Birthday</label
-            ><input
-              type="text"
-              class="form-control"
-              [value]="user.dob | slice: 0:10"
-              (input)="setDob($event)"
-            />
-          </div>
-          <div class="col-md-12">
+          <div class="col-md-12 mb-2">
             <label class="labels">Fiscal Code</label
             ><input
               type="text"
               class="form-control"
-              [value]="user.cf"
-              (input)="setCf($event)"
+              [value]="appointment.customer.cf"
+              disabled
+            />
+          </div>
+          <div class="col-md-12">
+            <label class="labels">Date</label
+            ><input
+              type="text"
+              class="form-control"
+              [value]="appointment.date | slice: 0:10"
+              (input)="setDate($event)"
             />
           </div>
         </div>
+
         <div class="row my-3 ms-2">
           <div class="col-6">
-            <button class="btn btn-primary" (click)="updateCustomer()">
+            <button class="btn btn-primary" (click)="updateAppointment()">
               Update
             </button>
           </div>
           <div class="col-6">
-            <button class="btn btn-danger" (click)="deleteCustomer()">
+            <button class="btn btn-danger" (click)="deleteAppointment()">
               Delete
             </button>
           </div>

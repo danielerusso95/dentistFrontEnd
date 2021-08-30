@@ -11,6 +11,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormCustomerComponent } from './form-customer/form-customer.component';
     CustomerComponent,
     HomepageComponent,
     ViewCustomerComponent,
-    FormCustomerComponent
+    FormCustomerComponent,
+    ViewAppointmentComponent
   ],
   imports: [
     BrowserModule,

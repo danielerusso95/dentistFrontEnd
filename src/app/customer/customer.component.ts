@@ -6,48 +6,42 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css'],
-  providers: [CustomerService]
+  providers: [CustomerService],
 })
 export class CustomerComponent implements OnInit {
- 
-  public customers:any;
+  public customers: any;
 
-  public inputCustomer:any;
+  public inputCustomer: any;
 
-  public oneCustomer:any;
+  public oneCustomer: any;
 
-  constructor(private service:CustomerService,
-    private _router: Router) { 
-      
-    }
+  constructor(private service: CustomerService) {}
 
   ngOnInit(): void {
-    this.service.getAllCustomer().subscribe(data=>this.customers=data
-      ,error=>console.log(error));
+    this.service.getAllCustomer().subscribe(
+      (data) => (this.customers = data),
+      (error) => console.log(error)
+    );
   }
-  // ngAfterViewChecked() {
-  //   this.service.getAllCustomer().subscribe(data=>this.customers=data
-  //     ,error=>console.log(error));
-  // }
-  
-  
 
   /**
-   * ROTTE PARAMETRICHE PER PASSARLO DA UN COMPONENTE ALL'ALTRO
-   * @param customer 
+   * Redirect to details page of customer
+   * @param customer
    */
-  viewCustomer(customer:any) {
-    this._router.navigate([`/viewCustomer`,customer.cf] , {state:{...customer} }); 
-   }
+  viewCustomer(customer: any) {
+    this.service.viewCustomer(customer);
+  }
 
-   findById(event:any){   
-    this.inputCustomer=event.target.value;   
-    for(let i=0;i<this.customers.length;i++){
-      if(this.customers[i].cf==this.inputCustomer){
-       this.oneCustomer=this.customers[i]
-      }else if(this.inputCustomer.length==0){
-        this.oneCustomer=null;
-      }
-    }
-   }
+  /**
+   * find one customer by id (cf)
+   * @param event
+   */
+  findById(event: any) {
+    this.inputCustomer = event.target.value;
+    this.oneCustomer = this.service.findById(
+      event,
+      this.customers,
+      this.inputCustomer
+    );
+  }
 }

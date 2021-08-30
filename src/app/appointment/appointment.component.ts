@@ -5,16 +5,24 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
   styleUrls: ['./appointment.component.css'],
-  providers:[AppointmentService]
+  providers: [AppointmentService],
 })
 export class AppointmentComponent implements OnInit {
+  public appointments: any;
 
-  public appointments:any;
-
-  constructor(public service:AppointmentService) { }
+  constructor(public appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    this.service.getAllAppointments().subscribe(data=>this.appointments=data)
+    this.appointmentService
+      .getAllAppointments()
+      .subscribe((data) => (this.appointments = data));
   }
 
+  /**
+   * redirect to details page of appointment
+   * @param appointment
+   */
+  viewAppointment(appointment: any) {
+    this.appointmentService.viewAppointment(appointment);
+  }
 }

@@ -5,18 +5,24 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
-  providers:[AppointmentService]
+  providers: [AppointmentService],
 })
 export class HomepageComponent implements OnInit {
+  public appointments: any;
 
-  public appointments:any;
-
-  constructor(private service:AppointmentService) { }
+  constructor(private service: AppointmentService) {}
 
   ngOnInit(): void {
-    this.service.getDailyAppointments().subscribe(data=>this.appointments=data
-    ,error=>console.log(error));
+    this.service.getDailyAppointments().subscribe(
+      (data) => {
+        this.appointments = data;
+        console.log(data);
+      },
+      (error) => console.log(error)
+    );
   }
-  
-  
+
+  viewAppointment(appointment: any) {
+    this.service.viewAppointment(appointment);
+  }
 }
