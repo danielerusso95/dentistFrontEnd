@@ -25,15 +25,19 @@
                 required
               />
               <input
-                type="time"
-                name="time"
+                placeholder="Time"
+                type="none"
                 min="09:00"
-                max="18:00"
-                step="1800"
-                class="form-control mb-4"
+                max="17:30"
                 ngModel
+                name="time"
+                [ngxTimepicker]="with30Gap"
                 required
               />
+              <ngx-material-timepicker
+                #with30Gap
+                [minutesGap]="30"
+              ></ngx-material-timepicker>
             </div>
             <div class="col-12">
               <label class="labels">Customers</label

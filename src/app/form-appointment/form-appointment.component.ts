@@ -51,7 +51,7 @@ export class FormAppointmentComponent implements OnInit {
       (el: { cf: any }) => el.cf == formBody.customer
     );
     let body = {
-      date: formBody.date + 'T' + formBody.time,
+      date: formBody.date + 'T' + formBody.time.split(' ')[0],
       customer: customer[0],
     };
     this.insertAppointment(body);

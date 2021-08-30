@@ -35,7 +35,7 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   onSubmit(body: any) {
-    this.appointment.date = body.date + 'T' + body.time;
+    this.appointment.date = body.date + 'T' + body.time.split(' ')[0];
     this.updateAppointment();
   }
 
