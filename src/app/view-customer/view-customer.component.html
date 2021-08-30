@@ -6,7 +6,11 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-md-10 border-right">
-      <div class="p-3 py-5">
+      <form
+        #updateCustomer="ngForm"
+        (ngSubmit)="onSubmit(updateCustomer.value)"
+        class="p-3 py-5"
+      >
         <div
           class="d-flex justify-content-between align-items-center mb-3"
         ></div>
@@ -16,8 +20,9 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.name"
-              (input)="setName($event)"
+              ngModel="{{ user.name }}"
+              name="name"
+              required
             />
           </div>
           <div class="col-md-6">
@@ -25,8 +30,9 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.surname"
-              (input)="setSurname($event)"
+              ngModel="{{ user.surname }}"
+              name="surname"
+              required
             />
           </div>
         </div>
@@ -36,8 +42,9 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.phoneNumber"
-              (input)="setPhoneNumber($event)"
+              ngModel="{{ user.phoneNumber }}"
+              name="phoneNumber"
+              required
             />
           </div>
           <div class="col-md-12">
@@ -45,8 +52,9 @@
             ><input
               type="text"
               class="form-control"
-              [value]="user.email"
-              (input)="setEmail($event)"
+              ngModel="{{ user.email }}"
+              name="email"
+              required
             />
           </div>
         </div>
@@ -54,10 +62,12 @@
           <div class="col-md-12">
             <label class="labels">Date Of Birthday</label
             ><input
-              type="text"
+              type="date"
               class="form-control"
-              [value]="user.dob | slice: 0:10"
-              (input)="setDob($event)"
+              min="1910-01-01"
+              ngModel="{{ user.dob | slice: 0:10 }}"
+              name="dob"
+              required
             />
           </div>
           <div class="col-md-12">
@@ -66,23 +76,23 @@
               type="text"
               class="form-control"
               [value]="user.cf"
-              (input)="setCf($event)"
+              ngModel="{{ user.cf }}"
+              name="cf"
+              required
             />
           </div>
         </div>
         <div class="row my-3 ms-2">
           <div class="col-6">
-            <button class="btn btn-primary" (click)="updateCustomer()">
-              Update
-            </button>
+            <button class="btn btn-primary" type="submit">Update</button>
           </div>
           <div class="col-6">
-            <button class="btn btn-danger" (click)="deleteCustomer()">
+            <button class="btn btn-danger" (click)="deleteCustomer(user)">
               Delete
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

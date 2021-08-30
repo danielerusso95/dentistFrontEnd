@@ -20,7 +20,8 @@
                 type="date"
                 name="date"
                 ngModel
-                class="form-control"
+                class="form-control my-3"
+                [min]="today"
                 required
               />
               <input
@@ -29,7 +30,7 @@
                 min="09:00"
                 max="18:00"
                 step="1800"
-                class="form-control"
+                class="form-control mb-4"
                 ngModel
                 required
               />
@@ -45,7 +46,7 @@
                 </option>
               </select>
             </div>
-            <button type="submit">ok</button>
+            <button class="btn btn-success mt-3" type="submit">Insert</button>
           </form>
         </div>
       </div>

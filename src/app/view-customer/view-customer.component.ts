@@ -13,50 +13,34 @@ export class ViewCustomerComponent implements OnInit {
   public newCustomer: any;
   public update = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.user = window.history.state;
   }
 
-  updateCustomer() {
-    this.http
-      .put<any>(
-        'http://localhost:8080/api/customer/edit/' + this.user.cf,
-        this.user
-      )
-      .subscribe(
-        (data) => {
-          this.user = data;
-          this.router.navigate(['/customer']).then(() => {
-            window.location.reload();
-            });
-        },
-        (error) => (this.update=true)
-      );
+  onSubmit(body: any) {
+    this.updateCustomer(body);
   }
 
-  setName(event: any) {
-    this.user.name = event.target.value;
+  updateCustomer(body: any) {
+    this.customerService.editCustomer(body).subscribe(
+      (data) => {
+        this.user = data;
+        this.router.navigate(['/customer']).then(() => {
+          window.location.reload();
+        });
+      },
+      (error) => (this.update = true)
+    );
   }
-  setSurname(event: any) {
-    this.user.surname = event.target.value;
-  }
-  setEmail(event: any) {
-    this.user.email = event.target.value;
-  }
-  setDob(event: any) {
-    this.user.dob = event.target.value;
-  }
-  setCf(event: any) {
-    this.user.cf = event.target.value;
-  }
-  setPhoneNumber(event: any) {
-    this.user.phoneNumber = event.target.value;
-  }
-  deleteCustomer() {
-    this.http
-      .delete<any>('http://localhost:8080/api/customer/delete/' + this.user.cf)
+
+  deleteCustomer(user: any) {
+    this.customerService
+      .deleteCustomer(user.cf)
       .subscribe((data) => console.log(data));
     this.router.navigate(['/customer']).then(() => {
       window.location.reload();

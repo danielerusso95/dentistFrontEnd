@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppointmentService } from '../service/appointmentService/appointment.service';
 
 @Component({
   selector: 'app-view-appointment',
@@ -8,51 +9,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-appointment.component.css'],
 })
 export class ViewAppointmentComponent implements OnInit {
+  public day: Date = new Date();
+  public today: string = '';
   public appointment: any;
   public newAppointment: any;
   public update = false;
+  public date = '';
+  public time = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.today = `${this.day.getFullYear()}-${
+      this.day.getMonth() + 1 > 9
+        ? `${this.day.getMonth() + 1}`
+        : `0${this.day.getMonth() + 1}`
+    }-${this.day.getUTCDate()}`;
+
     this.appointment = window.history.state;
+    this.date = this.appointment.date.split('T')[0];
+    this.time = this.appointment.date.split('T')[1].split('.')[0];
   }
-  setName(event: any) {
-    this.appointment.customer.name = event.target.value;
+
+  onSubmit(body: any) {
+    this.appointment.date = body.date + 'T' + body.time;
+    this.updateAppointment();
   }
-  setSurname(event: any) {
-    this.appointment.customer.surname = event.target.value;
-  }
-  setEmail(event: any) {
-    this.appointment.customer.email = event.target.value;
-  }
-  setDate(event: any) {
-    this.appointment.date = event.target.value;
-  }
-  setPhoneNumber(event: any) {
-    this.appointment.customer.phoneNumber = event.target.value;
-  }
+
   updateAppointment() {
-    this.http
-      .put<any>(
-        'http://localhost:8080/api/appointment/edit/' + this.appointment.id,
-        this.appointment
-      )
-      .subscribe(
-        (data) => {
-          this.appointment = data;
-          this.router.navigate(['/appointment']).then(() => {
-            window.location.reload();
-          });
-        },
-        (error) => (this.update = true)
-      );
+    this.appointmentService.editAppointment(this.appointment).subscribe(
+      (data) => {
+        this.appointment = data;
+        this.router.navigate(['/appointment']).then(() => {
+          window.location.reload();
+        });
+      },
+      (error) => (this.update = true)
+    );
   }
   deleteAppointment() {
-    this.http
-      .delete<any>(
-        'http://localhost:8080/api/appointment/delete/' + this.appointment.id
-      )
+    this.appointmentService
+      .deleteAppointment(this.appointment.id)
       .subscribe((data) => console.log(data));
     this.router.navigate(['/appointment']).then(() => {
       window.location.reload();

@@ -22,7 +22,6 @@ export class AppointmentService {
    * @returns get alls appointments of localDate
    */
   getAppointmentsByDay(day: any) {
-    console.log(day);
     return this.http.get<any>(
       'http://localhost:8080/api/appointment/getAllByDate/' +
         day[0] +
@@ -50,5 +49,39 @@ export class AppointmentService {
       'http://localhost:8080/api/appointment/insert',
       body
     );
+  }
+
+  /**
+   * edit appointment
+   * @param event
+   * @returns
+   */
+  editAppointment(appointment: any) {
+    return this.http.put<any>(
+      'http://localhost:8080/api/appointment/edit/' + appointment.id,
+      appointment
+    );
+  }
+
+  /**
+   * delete appointment
+   * @param event
+   * @returns
+   */
+  deleteAppointment(appointmentId: string) {
+    return this.http.delete<any>(
+      'http://localhost:8080/api/appointment/delete/' + appointmentId
+    );
+  }
+
+  findByDate(event: any) {
+    let intDate = [0, 0, 0];
+    let date = event.split('-');
+    date = date.reverse();
+    for (let index = 0; index < date.length; index++) {
+      intDate[index] = parseInt(date[index]);
+    }
+    intDate[1] -= 1;
+    return this.getAppointmentsByDay(intDate);
   }
 }

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../service/customerService/customer.service';
 
 @Component({
   selector: 'app-form-customer',
@@ -8,50 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-customer.component.css'],
 })
 export class FormCustomerComponent implements OnInit {
-  public user = {
-    name: '',
-    surname: '',
-    email: '',
-    dob: '',
-    phoneNumber: '',
-    cf: '',
-  };
   public flag = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
-  insertCustomer() {
-    this.http
-      .post<any>('http://localhost:8080/api/customer/insert', this.user)
-      .subscribe(
-        (data) => {
-          this.flag = true;
-          this.router.navigate(['/customer']).then(() => {
-            window.location.reload();
-          });
-        },
-        (error) => (this.flag = true)
-      );
-  }
-
-  setName(event: any) {
-    this.user.name = event.target.value;
-  }
-  setSurname(event: any) {
-    this.user.surname = event.target.value;
-  }
-  setEmail(event: any) {
-    this.user.email = event.target.value;
-  }
-  setDob(event: any) {
-    this.user.dob = event.target.value;
-  }
-  setCf(event: any) {
-    this.user.cf = event.target.value;
-  }
-  setPhoneNumber(event: any) {
-    this.user.phoneNumber = event.target.value;
+  /**
+   * insert a customer with data from form
+   * @param body
+   */
+  insertCustomer(body: any) {
+    this.customerService.insertCustomer(body).subscribe(
+      (data) => {
+        this.flag = true;
+        this.router.navigate(['/customer']).then(() => {
+          window.location.reload();
+        });
+      },
+      (error) => (this.flag = true)
+    );
   }
 }

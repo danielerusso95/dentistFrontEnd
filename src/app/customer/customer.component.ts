@@ -15,10 +15,10 @@ export class CustomerComponent implements OnInit {
 
   public oneCustomer: any;
 
-  constructor(private service: CustomerService) {}
+  constructor(private customerService: CustomerService) {}
 
   ngOnInit(): void {
-    this.service.getAllCustomer().subscribe(
+    this.customerService.getAllCustomer().subscribe(
       (data) => (this.customers = data),
       (error) => console.log(error)
     );
@@ -29,7 +29,7 @@ export class CustomerComponent implements OnInit {
    * @param customer
    */
   viewCustomer(customer: any) {
-    this.service.viewCustomer(customer);
+    this.customerService.viewCustomer(customer);
   }
 
   /**
@@ -38,7 +38,7 @@ export class CustomerComponent implements OnInit {
    */
   findById(event: any) {
     this.inputCustomer = event.target.value;
-    this.oneCustomer = this.service.findById(
+    this.oneCustomer = this.customerService.findById(
       event,
       this.customers,
       this.inputCustomer

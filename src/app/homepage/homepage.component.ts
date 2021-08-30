@@ -10,21 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
   public appointments: any;
 
-  constructor(private service: AppointmentService) {}
+  constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
-    let date = new Date();
-    let today: number[] = [date.getDate(), date.getMonth(), date.getFullYear()];
-    this.service.getAppointmentsByDay(today).subscribe(
-      (data) => {
-        this.appointments = data;
-        console.log(data);
-      },
-      (error) => console.log(error)
-    );
+    this.findByDate();
   }
 
+  /**
+   * get all appointments for today
+   * @param appointment
+   */
+  findByDate() {
+    let date = new Date();
+    let today: number[] = [date.getDate(), date.getMonth(), date.getFullYear()];
+    this.appointmentService
+      .getAppointmentsByDay(today)
+      .subscribe((data) => (this.appointments = data));
+  }
+
+  /**
+   * open a details page for appointment
+   * @param appointment
+   */
   viewAppointment(appointment: any) {
-    this.service.viewAppointment(appointment);
+    this.appointmentService.viewAppointment(appointment);
   }
 }

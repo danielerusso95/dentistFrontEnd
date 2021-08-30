@@ -27,16 +27,14 @@ export class AppointmentComponent implements OnInit {
     this.appointmentService.viewAppointment(appointment);
   }
 
+  /**
+   * find all appointments by a date
+   * @param event
+   */
   findByDate(event: any) {
-    let intDate = [0, 0, 0];
-    let date = event.target.value.split('-');
-    date = date.reverse();
-    for (let index = 0; index < date.length; index++) {
-      intDate[index] = parseInt(date[index]);
-    }
-    intDate[1] -= 1;
-    this.appointmentService.getAppointmentsByDay(intDate).subscribe((data) => {
-      this.appointmentsByDay = data;
-    });
+    this.appointmentService
+      .findByDate(event.target.value)
+      .subscribe((data) => (this.appointmentsByDay = data));
+    console.log(this.appointmentsByDay);
   }
 }

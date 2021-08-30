@@ -4,20 +4,22 @@
       <h3>Insert Failed</h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3 border-right"></div>
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div
-          class="d-flex justify-content-between align-items-center mb-3"
-        ></div>
+  <div class="row justify-content-center">
+    <div class="col-md-10 border-right">
+      <form
+        #customerForm="ngForm"
+        class="p-3 py-5"
+        (ngSubmit)="insertCustomer(customerForm.value)"
+      >
         <div class="row mt-2">
           <div class="col-md-6">
             <label class="labels">Name</label
             ><input
               type="text"
               class="form-control"
-              (input)="setName($event)"
+              ngModel
+              name="name"
+              required
             />
           </div>
           <div class="col-md-6">
@@ -25,7 +27,9 @@
             ><input
               type="text"
               class="form-control"
-              (input)="setSurname($event)"
+              ngModel
+              name="surname"
+              required
             />
           </div>
         </div>
@@ -35,7 +39,9 @@
             ><input
               type="text"
               class="form-control"
-              (input)="setPhoneNumber($event)"
+              ngModel
+              name="phoneNumber"
+              required
             />
           </div>
           <div class="col-md-12">
@@ -43,22 +49,37 @@
             ><input
               type="text"
               class="form-control"
-              (input)="setEmail($event)"
+              ngModel
+              name="email"
+              required
             />
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-md-6">
             <label class="labels">Date Of Birthday</label
-            ><input type="text" class="form-control" (input)="setDob($event)" />
+            ><input
+              type="date"
+              class="form-control"
+              min="1910-01-01"
+              ngModel
+              name="dob"
+              required
+            />
           </div>
           <div class="col-md-6">
             <label class="labels">Fiscal Code</label
-            ><input type="text" class="form-control" (input)="setCf($event)" />
+            ><input
+              type="text"
+              class="form-control"
+              ngModel
+              name="cf"
+              required
+            />
           </div>
         </div>
-      </div>
-      <button class="btn btn-success" (click)="insertCustomer()">Insert</button>
+        <button class="btn btn-success my-3" type="submit">Insert</button>
+      </form>
     </div>
   </div>
 </div>
