@@ -1,96 +1,100 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="row mb-5">
-        <div class="col-6"><h3 class="my-3">Appointments</h3></div>
-        <div class="col-6 d-flex">
-          <button
-            class="btn ms-auto btn-success my-3"
-            routerLink="/formAppointment"
-          >
-            Add New Appointment
-          </button>
-        </div>
-      </div>
-      <div class="row mb-5">
-        <div class="col-12 mb-4">
-          <label for="findByDate" class="mb-3 ms-2"
-            >Search an appointment by Date</label
-          >
-          <input
-            id="findByDate"
-            type="date"
-            class="form-control"
-            placeholder="Find by date"
-            (input)="findByDate($event)"
-          />
-        </div>
-        <div class="col-12" *ngIf="appointmentsByDay">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Surname</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Date</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let appointment of appointmentsByDay">
-                <td scope="row">{{ appointment.customer.name }}</td>
-                <td>{{ appointment.customer.surname }}</td>
-                <td>{{ appointment.customer.phoneNumber }}</td>
-                <td>
-                  {{ appointment.date | slice: 0:10 }} -
-                  {{ appointment.date | slice: 11:16 }}
-                </td>
-                <td>
-                  <button
-                    class="btn btn-info"
-                    (click)="viewAppointment(appointment)"
-                  >
-                    <i class="far fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<div class="row">
+  <div class="col-6 col-md-8 col-lg-10">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6"><h3 class="my-3">Appointments</h3></div>
+      <div class="col-12 col-md-6 d-flex">
+        <button
+          class="btn ms-auto btn-success my-3"
+          routerLink="/formAppointment"
+        >
+          Add New Appointment
+        </button>
       </div>
     </div>
-    <div class="col-12">
-      <h3 class="text-center my-4">All Appointments</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let appointment of appointments">
-            <td scope="row">{{ appointment.customer.name }}</td>
-            <td>{{ appointment.customer.surname }}</td>
-            <td>{{ appointment.customer.phoneNumber }}</td>
-            <td>
-              {{ appointment.date | slice: 0:10 }} -
-              {{ appointment.date | slice: 11:16 }}
-            </td>
-            <td>
-              <button
-                class="btn btn-info"
-                (click)="viewAppointment(appointment)"
-              >
-                <i class="far fa-eye"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row mb-5">
+      <div class="col-12">
+        <label for="findByDate" class="mb-3 ms-2"
+          >Search an appointment by Date</label
+        >
+        <input
+          id="findByDate"
+          type="date"
+          class="form-control"
+          placeholder="Find by date"
+          (input)="findByDate($event)"
+        />
+      </div>
+      <div class="col-12" *ngIf="appointmentsByDay">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of appointmentsByDay">
+              <td scope="row">{{ appointment.customer.name }}</td>
+              <td>{{ appointment.customer.surname }}</td>
+              <td>{{ appointment.customer.phoneNumber }}</td>
+              <td>
+                {{ appointment.date | slice: 0:10 }} -
+                {{ appointment.date | slice: 11:16 }}
+              </td>
+              <td>
+                <button
+                  class="btn btn-info"
+                  (click)="viewAppointment(appointment)"
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-7 col-md-8 col-lg-10">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-center my-4">All Appointments</h3>
+      </div>
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of appointments">
+              <td scope="row">{{ appointment.customer.name }}</td>
+              <td>{{ appointment.customer.surname }}</td>
+              <td>{{ appointment.customer.phoneNumber }}</td>
+              <td>
+                {{ appointment.date | slice: 0:10 }} -
+                {{ appointment.date | slice: 11:16 }}
+              </td>
+              <td>
+                <button
+                  class="btn btn-info"
+                  (click)="viewAppointment(appointment)"
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

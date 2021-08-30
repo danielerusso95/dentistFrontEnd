@@ -1,91 +1,85 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="row mb-5">
-        <div class="col-6"><h3 class="my-3">Customers</h3></div>
-        <div class="col-6 d-flex">
-          <button
-            class="btn ms-auto btn-success my-3"
-            routerLink="/formCustomer"
-          >
-            Add New Customer
-          </button>
-        </div>
-      </div>
-      <div class="row mb-5">
-        <div class="col-12">
-          <label for="findById" class="mb-3 ms-2"
-            >Search a customer by CF</label
-          >
-          <input
-            id="findById"
-            type="text"
-            class="form-control"
-            placeholder="Find by cf"
-            (input)="findById($event)"
-          />
-        </div>
-        <div class="col-12" *ngIf="oneCustomer">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Surname</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Email</th>
-                <th scope="col">Date Of Birthday</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td scope="row">{{ oneCustomer.name }}</td>
-                <td>{{ oneCustomer.surname }}</td>
-                <td>{{ oneCustomer.phoneNumber }}</td>
-                <td>{{ oneCustomer.email }}</td>
-                <td>{{ oneCustomer.dob | slice: 0:10 }}</td>
-                <td>
-                  <button
-                    class="btn btn-info"
-                    (click)="viewCustomer(oneCustomer)"
-                  >
-                    <i class="far fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<div class="row">
+  <div class="col-6 col-md-8 col-lg-10">
+    <div class="row mb-5">
+      <div class="col-12 col-md-6"><h3 class="my-3">Customers</h3></div>
+      <div class="col-12 col-md-6 d-flex">
+        <button class="btn ms-auto btn-success my-3" routerLink="/formCustomer">
+          Add New Customer
+        </button>
       </div>
     </div>
-    <div class="col-12">
-      <h3 class="text-center my-4">All Customers</h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Email</th>
-            <th scope="col">Date Of Birthday</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let el of customers">
-            <td scope="row">{{ el.name }}</td>
-            <td>{{ el.surname }}</td>
-            <td>{{ el.phoneNumber }}</td>
-            <td>{{ el.email }}</td>
-            <td>{{ el.dob | slice: 0:10 }}</td>
-            <td>
-              <button class="btn btn-info" (click)="viewCustomer(el)">
-                <i class="far fa-eye"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row mb-5">
+      <div class="col-12">
+        <label for="findById" class="mb-3 ms-2">Search a customer by CF</label>
+        <input
+          id="findById"
+          type="text"
+          class="form-control"
+          placeholder="Find by cf"
+          (input)="findById($event)"
+        />
+      </div>
+      <div class="col-12" *ngIf="oneCustomer">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">{{ oneCustomer.name }}</td>
+              <td>{{ oneCustomer.surname }}</td>
+              <td>{{ oneCustomer.phoneNumber }}</td>
+              <td>{{ oneCustomer.email }}</td>
+              <td>
+                <button
+                  class="btn btn-info"
+                  (click)="viewCustomer(oneCustomer)"
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-7 col-md-8 col-lg-10">
+    <div class="row">
+      <div class="col-12"><h3 class="text-center my-4">All Customers</h3></div>
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let el of customers">
+              <td scope="row">{{ el.name }}</td>
+              <td>{{ el.surname }}</td>
+              <td>{{ el.phoneNumber }}</td>
+              <td style="font-size: 10px">{{ el.email }}</td>
+              <td>
+                <button class="btn btn-info" (click)="viewCustomer(el)">
+                  <i class="far fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
