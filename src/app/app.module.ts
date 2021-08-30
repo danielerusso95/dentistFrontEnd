@@ -14,6 +14,8 @@ import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 import { FormAppointmentComponent } from './form-appointment/form-appointment.component';
 import { FormsModule } from '@angular/forms';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,14 @@ import { FormsModule } from '@angular/forms';
     ViewAppointmentComponent,
     FormAppointmentComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgxMaterialTimepickerModule,
+    BrowserAnimationsModule,
+  ],
   providers: [CustomerService],
   bootstrap: [AppComponent],
 })

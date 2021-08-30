@@ -42,9 +42,8 @@
                 <td>{{ appointment.customer.surname }}</td>
                 <td>{{ appointment.customer.phoneNumber }}</td>
                 <td>
-                  {{ appointment.date | slice: 0:10 }}//{{
-                    appointment.date | slice: 11:16
-                  }}
+                  {{ appointment.date | slice: 0:10 }} -
+                  {{ appointment.date | slice: 11:16 }}
                 </td>
                 <td>
                   <button
@@ -78,9 +77,8 @@
             <td>{{ appointment.customer.surname }}</td>
             <td>{{ appointment.customer.phoneNumber }}</td>
             <td>
-              {{ appointment.date | slice: 0:10 }}//{{
-                appointment.date | slice: 11:16
-              }}
+              {{ appointment.date | slice: 0:10 }} -
+              {{ appointment.date | slice: 11:16 }}
             </td>
             <td>
               <button

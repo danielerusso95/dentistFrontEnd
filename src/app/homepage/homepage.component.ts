@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
   public appointments: any;
-
+  public valueTime: any;
   constructor(private appointmentService: AppointmentService) {}
 
   ngOnInit(): void {
@@ -26,6 +26,10 @@ export class HomepageComponent implements OnInit {
     this.appointmentService
       .getAppointmentsByDay(today)
       .subscribe((data) => (this.appointments = data));
+  }
+
+  setTime(time: any) {
+    this.valueTime = time;
   }
 
   /**

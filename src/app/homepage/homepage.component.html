@@ -19,9 +19,8 @@
           <td>{{ appointment.customer.surname }}</td>
           <td>{{ appointment.customer.phoneNumber }}</td>
           <td>
-            {{ appointment.date | slice: 0:10 }}//{{
-              appointment.date | slice: 11:16
-            }}
+            {{ appointment.date | slice: 0:10 }} -
+            {{ appointment.date | slice: 11:16 }}
           </td>
           <td>
             <button class="btn btn-info" (click)="viewAppointment(appointment)">
@@ -31,5 +30,11 @@
         </tr>
       </tbody>
     </table>
+    <input placeholder="Gap with 5" [ngxTimepicker]="with30Gap" />
+    <ngx-material-timepicker
+      (timeSet)="setTime($event)"
+      #with30Gap
+      [minutesGap]="30"
+    ></ngx-material-timepicker>
   </div>
 </div>

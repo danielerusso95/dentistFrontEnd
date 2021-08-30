@@ -8,6 +8,7 @@
     <div class="col-md-10 border-right">
       <form
         #customerForm="ngForm"
+        ngNativeValidate
         class="p-3 py-5"
         (ngSubmit)="insertCustomer(customerForm.value)"
       >
@@ -73,6 +74,7 @@
               type="text"
               class="form-control"
               ngModel
+              minlength="16"
               name="cf"
               required
             />

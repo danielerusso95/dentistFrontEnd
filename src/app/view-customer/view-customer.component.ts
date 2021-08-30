@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { CustomerService } from './../service/customerService/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -27,7 +26,7 @@ export class ViewCustomerComponent implements OnInit {
   }
 
   updateCustomer(body: any) {
-    this.customerService.editCustomer(body).subscribe(
+    this.customerService.editCustomer(body, this.user.cf).subscribe(
       (data) => {
         this.user = data;
         this.router.navigate(['/customer']).then(() => {

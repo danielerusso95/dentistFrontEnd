@@ -65,9 +65,9 @@ export class CustomerService {
    * @param event
    * @returns
    */
-  editCustomer(customer: any) {
+  editCustomer(customer: any, cf: string) {
     return this.http.put<any>(
-      'http://localhost:8080/api/customer/edit/' + customer.cf,
+      'http://localhost:8080/api/customer/edit/' + cf,
       customer
     );
   }
