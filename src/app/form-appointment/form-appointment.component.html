@@ -1,0 +1,54 @@
+<div class="container rounded bg-white mt-5 mb-5 w-75">
+  <div class="row" *ngIf="">
+    <div class="col-12">
+      <h3>Insert Failed</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3 border-right"></div>
+    <div class="col-md-10 border-right">
+      <div class="p-3 py-5">
+        <div class="row mt-2">
+          <form
+            #myForm="ngForm"
+            ngNativeValidate
+            (ngSubmit)="onSubmit(myForm.value)"
+          >
+            <div class="col-12">
+              <label class="labels">Date</label
+              ><input
+                type="date"
+                name="date"
+                ngModel
+                class="form-control"
+                required
+              />
+              <input
+                type="time"
+                name="time"
+                min="09:00"
+                max="18:00"
+                step="1800"
+                class="form-control"
+                ngModel
+                required
+              />
+            </div>
+            <div class="col-12">
+              <label class="labels">Customers</label
+              ><select name="customer" ngModel class="form-control" required>
+                <option
+                  *ngFor="let customer of customers"
+                  value="{{ customer.cf }}"
+                >
+                  {{ customer.cf }}
+                </option>
+              </select>
+            </div>
+            <button type="submit">ok</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+import { FormAppointmentComponent } from './form-appointment/form-appointment.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'viewCustomer/:customer', component: ViewCustomerComponent },
   { path: 'formCustomer', component: FormCustomerComponent },
   { path: 'viewAppointment/:appointment', component: ViewAppointmentComponent },
+  { path: 'formAppointment', component: FormAppointmentComponent },
 ];
 
 @NgModule({

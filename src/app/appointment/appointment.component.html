@@ -1,28 +1,94 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Hour</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let appointment of appointments">
-      <td scope="row">{{ appointment.customer.name }}</td>
-      <td>{{ appointment.customer.surname }}</td>
-      <td>{{ appointment.customer.phoneNumber }}</td>
-      <td>
-        {{ appointment.date | slice: 0:10 }}//{{
-          appointment.date | slice: 11:16
-        }}
-      </td>
-      <td>
-        <button class="btn btn-info" (click)="viewAppointment(appointment)">
-          <i class="far fa-eye"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mb-5">
+        <div class="col-6"><h3 class="my-3">Appointments</h3></div>
+        <div class="col-6 d-flex">
+          <button
+            class="btn ms-auto btn-success my-3"
+            routerLink="/formAppointment"
+          >
+            Add New Appointment
+          </button>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-12 mb-4">
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Find by date"
+            (input)="findByDate($event)"
+          />
+        </div>
+        <div class="col-12" *ngIf="appointmentsByDay">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of appointmentsByDay">
+                <td scope="row">{{ appointment.customer.name }}</td>
+                <td>{{ appointment.customer.surname }}</td>
+                <td>{{ appointment.customer.phoneNumber }}</td>
+                <td>
+                  {{ appointment.date | slice: 0:10 }}//{{
+                    appointment.date | slice: 11:16
+                  }}
+                </td>
+                <td>
+                  <button
+                    class="btn btn-info"
+                    (click)="viewAppointment(appointment)"
+                  >
+                    <i class="far fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <h3 class="text-center my-4">All Appointments</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointments">
+            <td scope="row">{{ appointment.customer.name }}</td>
+            <td>{{ appointment.customer.surname }}</td>
+            <td>{{ appointment.customer.phoneNumber }}</td>
+            <td>
+              {{ appointment.date | slice: 0:10 }}//{{
+                appointment.date | slice: 11:16
+              }}
+            </td>
+            <td>
+              <button
+                class="btn btn-info"
+                (click)="viewAppointment(appointment)"
+              >
+                <i class="far fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

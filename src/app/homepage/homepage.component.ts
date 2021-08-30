@@ -13,7 +13,9 @@ export class HomepageComponent implements OnInit {
   constructor(private service: AppointmentService) {}
 
   ngOnInit(): void {
-    this.service.getDailyAppointments().subscribe(
+    let date = new Date();
+    let today: number[] = [date.getDate(), date.getMonth(), date.getFullYear()];
+    this.service.getAppointmentsByDay(today).subscribe(
       (data) => {
         this.appointments = data;
         console.log(data);

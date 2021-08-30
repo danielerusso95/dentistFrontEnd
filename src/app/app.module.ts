@@ -12,6 +12,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+import { FormAppointmentComponent } from './form-appointment/form-appointment.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,11 @@ import { ViewAppointmentComponent } from './view-appointment/view-appointment.co
     HomepageComponent,
     ViewCustomerComponent,
     FormCustomerComponent,
-    ViewAppointmentComponent
+    ViewAppointmentComponent,
+    FormAppointmentComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [CustomerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

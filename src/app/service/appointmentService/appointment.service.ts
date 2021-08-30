@@ -21,17 +21,15 @@ export class AppointmentService {
    *
    * @returns get alls appointments of localDate
    */
-  getDailyAppointments() {
-    let date = new Date();
-    console.log(date.getMonth());
-    let today: number[] = [date.getDate(), date.getMonth(), date.getFullYear()];
+  getAppointmentsByDay(day: any) {
+    console.log(day);
     return this.http.get<any>(
       'http://localhost:8080/api/appointment/getAllByDate/' +
-        today[0] +
+        day[0] +
         '/' +
-        today[1] +
+        day[1] +
         '/' +
-        today[2]
+        day[2]
     );
   }
   /**
@@ -42,5 +40,15 @@ export class AppointmentService {
     this._router.navigate([`/viewAppointment`, appointment.date], {
       state: { ...appointment },
     });
+  }
+  /**
+   *
+   * @returns post an appointment
+   */
+  insertAppointment(body: any) {
+    return this.http.post<any>(
+      'http://localhost:8080/api/appointment/insert',
+      body
+    );
   }
 }
