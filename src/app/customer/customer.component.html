@@ -12,6 +12,40 @@
           </button>
         </div>
       </div>
+      <div class="row mb-5">
+        <div class="col-12">
+          <input type="text" class="form-control" placeholder="Find by cf" (input)="findById($event)">
+        </div>
+        <div class="col-12" *ngIf="oneCustomer">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date Of Birthday</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">{{ oneCustomer.name }}</td>
+                <td>{{ oneCustomer.surname }}</td>
+                <td>{{ oneCustomer.phoneNumber }}</td>
+                <td>{{ oneCustomer.email }}</td>
+                <td>{{ oneCustomer.dob | slice: 0:10 }}</td>
+                <td>
+                  <button class="btn btn-info" (click)="viewCustomer(oneCustomer)">
+                    <i class="far fa-eye"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+              
+          </table>
+        </div>
+      </div>
     </div>
     <div class="col-12">
       <table class="table">
