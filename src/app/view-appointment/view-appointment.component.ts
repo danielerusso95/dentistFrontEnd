@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentService } from '../service/appointmentService/appointment.service';
@@ -34,18 +33,42 @@ export class ViewAppointmentComponent implements OnInit {
     this.time = this.appointment.date.split('T')[1].split('.')[0];
   }
 
-  onSubmit(body: any) {
-    this.appointment.date = body.date + 'T' + body.time.split(' ')[0];
-    this.updateAppointment();
+  onSubmit(formBody: any) {
+    let customer = this.appointment.customer;
+
+    let time;
+    let data;
+
+    if (formBody.time.split(' ')[1] == 'PM') {
+      time = parseInt(formBody.time.split(' ')[0].split(':')[0]) + 12;
+      data =
+        formBody.date +
+        'T' +
+        time +
+        ':' +
+        formBody.time.split(' ')[0].split(':')[1];
+    } else {
+      data = formBody.date + 'T' + formBody.time.split(' ')[0];
+    }
+    let body = {
+      id: this.appointment.id,
+      date: data,
+      customer: customer,
+    };
+    console.log(body);
+    this.updateAppointment(body);
   }
 
-  updateAppointment() {
-    this.appointmentService.editAppointment(this.appointment).subscribe(
+  updateAppointment(body: any) {
+    this.appointmentService.editAppointment(body).subscribe(
       (data) => {
-        this.appointment = data;
-        this.router.navigate(['/appointment']).then(() => {
-          window.location.reload();
-        });
+        if (data) {
+          this.router.navigate(['/appointment']).then(() => {
+            window.location.reload();
+          });
+        } else {
+          this.update = true;
+        }
       },
       (error) => (this.update = true)
     );
