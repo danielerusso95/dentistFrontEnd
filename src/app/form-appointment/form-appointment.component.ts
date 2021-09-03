@@ -18,6 +18,8 @@ export class FormAppointmentComponent implements OnInit {
   ) {}
   public customers: any;
 
+  public failed: boolean = false;
+
   ngOnInit(): void {
     this.today = `${this.day.getFullYear()}-${
       this.day.getMonth() + 1 > 9
@@ -35,11 +37,19 @@ export class FormAppointmentComponent implements OnInit {
    * @param body
    */
   insertAppointment(body: any) {
-    this.appointmentService.insertAppointment(body).subscribe((data) => {
-      this.router.navigate(['/appointment']).then(() => {
-        window.location.reload();
-      });
-    });
+    console.log(body);
+    this.appointmentService.insertAppointment(body).subscribe(
+      (data) => {
+        if (data)
+          this.router.navigate(['/appointment']).then(() => {
+            window.location.reload();
+          });
+        else{
+          this.failed=true;
+        }        
+      },
+      (error) => (this.failed = true)
+    );
   }
 
   /**
@@ -50,10 +60,25 @@ export class FormAppointmentComponent implements OnInit {
     let customer = this.customers.filter(
       (el: { cf: any }) => el.cf == formBody.customer
     );
+    let time;
+    let data;
+
+    if (formBody.time.split(' ')[1] == 'PM') {
+      time = parseInt(formBody.time.split(' ')[0].split(':')[0]) + 12;
+      data =
+        formBody.date +
+        'T' +
+        time +
+        ':' +
+        formBody.time.split(' ')[0].split(':')[1];
+    } else {
+      data = formBody.date + 'T' + formBody.time.split(' ')[0];
+    }
     let body = {
-      date: formBody.date + 'T' + formBody.time.split(' ')[0],
+      date: data,
       customer: customer[0],
     };
+
     this.insertAppointment(body);
   }
 }
